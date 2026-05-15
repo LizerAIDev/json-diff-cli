@@ -1,83 +1,99 @@
-# JSON Diff CLI
+# JSON Diff CLI | JSON 对比工具
 
-[English](#english) · [中文](#中文)
+[![CI](https://github.com/LizerAIDev/json-diff-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/LizerAIDev/json-diff-cli/actions/workflows/ci.yml)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Colorized JSON diff for terminal — compare two JSON files and see differences highlighted in red/green.
+
+终端彩色 JSON 对比工具——比较两个 JSON 文件，差异以红绿色高亮显示。
 
 ---
 
-## English
-
-Colorized JSON diff for terminal — compare two JSON files and see differences highlighted in green/red.
-
-### Features
-
-- **Recursive diff** — handles nested objects and arrays
-- **Color output** — green for additions, red for removals
-- **Zero dependencies** — pure Python standard library
-- **Path notation** — shows exact location of each difference
-
-### Quick Start
+### Example / 示例
 
 ```bash
+$ json-diff old.json new.json
+- debug: true
++ debug: false
++ features: ["ai"]
+- name: "old_project"
++ name: "new_project"
+- version: "1.0"
++ version: "2.0"
+
+7 difference(s) found.
+```
+
+## Features / 功能
+
+| Feature | Description |
+|---------|-------------|
+| 🔍 Recursive diff | Handles nested objects and arrays |
+| 🎨 Color output | Green for additions, red for removals |
+| 📍 Path notation | Shows exact location (e.g., `data.users[0].name`) |
+| ⚡ Zero dependencies | Pure Python standard library |
+
+## Quick Start / 快速开始
+
+```bash
+# Compare two JSON files
+json-diff file1.json file2.json
+
+# Or run directly
 python main.py file1.json file2.json
 ```
 
-### Example
+### Install / 安装
 
 ```bash
-$ python main.py old.json new.json
-- name: "old_project"
-+ name: "new_project"
-+ version: "2.0"
-- debug: true
-
-3 difference(s) found.
+pip install json-diff-cli-lizer
+json-diff old.json new.json
 ```
 
-### Options
+### Options / 参数
 
 | Flag | Description |
 |------|-------------|
 | `--color` | Enable color output (default) |
 | `--no-color` | Disable color output |
 
----
+## Examples / 示例
 
-## 中文
-
-终端彩色 JSON 对比工具——比较两个 JSON 文件，差异以红绿色高亮显示。
-
-### 功能
-
-- **递归对比** — 支持嵌套对象和数组
-- **彩色输出** — 绿色新增，红色删除
-- **零依赖** — 纯 Python 标准库
-- **路径标记** — 精确显示每个差异的位置
-
-### 快速开始
+### Compare API responses
 
 ```bash
-python main.py file1.json file2.json
+json-diff api_v1.json api_v2.json
 ```
 
-### 示例
+### Compare config files
 
 ```bash
-$ python main.py old.json new.json
-- name: "old_project"
-+ name: "new_project"
-+ version: "2.0"
-- debug: true
-
-发现 3 处差异。
+json-diff config.dev.json config.prod.json
 ```
 
-### 选项
+### Use in scripts
 
-| 参数 | 说明 |
-|------|------|
-| `--color` | 启用彩色输出（默认） |
-| `--no-color` | 禁用彩色输出 |
+```bash
+if json-diff old.json new.json --no-color | grep -q "difference"; then
+  echo "Configs changed!"
+fi
+```
+
+## Tech Stack / 技术栈
+
+- **Python 3.9+** — Zero external dependencies
+- **json** — Standard library JSON parser
+- **argparse** — Standard library CLI parser
+
+## License / 许可证
+
+[MIT License](LICENSE)
 
 ---
 
-*By Lizer | [github.com/LizerAIDev](https://github.com/LizerAIDev)*
+<div align="center">
+
+Made with ❤️ by [Lizer](https://github.com/LizerAIDev) | Powered by [Hermes Agent](https://hermes-agent.nousresearch.com)
+
+</div>
